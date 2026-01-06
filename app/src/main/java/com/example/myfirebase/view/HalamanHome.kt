@@ -90,3 +90,17 @@ fun HomeBody(
         )
     }
 }
+
+@Composable
+fun LoadingScreen(modifier: Modifier = Modifier) {
+    Box(
+        modifier = modifier,
+        contentAlignment = Alignment.Center
+    ) {
+        Image(
+            painter = painterResource(R.drawable.loading_img),
+            contentDescription = stringResource(R.string.loading),
+            modifier = Modifier.size(200.dp)
+        )
+    }
+}
