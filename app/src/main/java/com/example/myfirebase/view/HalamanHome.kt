@@ -65,3 +65,28 @@ fun HomeScreen(
         )
     }
 }
+
+@Composable
+fun HomeBody(
+    statusUiSiswa: StatusUiSiswa,
+    onSiswaClick: (Int) -> Unit,
+    retryAction: () -> Unit,
+    modifier: Modifier = Modifier
+) {
+    when (statusUiSiswa) {
+        is StatusUiSiswa.Loading -> LoadingScreen(
+            modifier = modifier.fillMaxSize()
+        )
+
+        is StatusUiSiswa.Success -> DaftarSiswa(
+            itemSiswa = statusUiSiswa.siswa,
+            onSiswaClick = { onSiswaClick(it.id.toInt()) },
+            modifier = modifier.fillMaxSize()
+        )
+
+        is StatusUiSiswa.Error -> ErrorScreen(
+            retryAction = retryAction,
+            modifier = modifier.fillMaxSize()
+        )
+    }
+}
