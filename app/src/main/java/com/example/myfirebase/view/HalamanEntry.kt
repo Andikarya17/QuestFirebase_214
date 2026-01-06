@@ -22,11 +22,13 @@ import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.myfirebase.modeldata.DetailSiswa
 import com.example.myfirebase.modeldata.UIStateSiswa
 import com.example.myfirebase.view.route.DestinasiEntry
 import kotlinx.coroutines.launch
 import com.example.myfirebase.R
+import com.example.myfirebase.viewmodel.EntryViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
