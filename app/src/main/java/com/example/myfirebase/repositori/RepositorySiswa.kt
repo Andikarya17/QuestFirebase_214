@@ -28,3 +28,8 @@ class FirebaseRepositorySiswa : RepositorySiswa {
             emptyList()
         }
     }
+
+    override suspend fun postDataSiswa(siswa: Siswa) {
+        val docRef =
+            if (siswa.id == 0L) collection.document()
+            else collection.document(siswa.id.toString())
