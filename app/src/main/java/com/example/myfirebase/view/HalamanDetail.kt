@@ -2,6 +2,7 @@ package com.example.myfirebase.view
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -100,6 +101,14 @@ private fun BodyDetailDataSiswa(
     ) {
         var deleteConfirmationRequired by rememberSaveable {
             mutableStateOf(false)
+        }
+        when (statusUIDetail) {
+            is StatusUIDetail.Success -> DetailDataSiswa(
+                siswa = statusUIDetail.satusiswa,
+                modifier = Modifier.fillMaxWidth()
+            )
+
+            else -> {}
         }
 }
 
