@@ -1,9 +1,7 @@
+@file:OptIn(InternalSerializationApi::class)
 package com.example.myfirebase.viewmodel
-
 import com.example.myfirebase.view.route.DestinasiDetail
 import kotlinx.serialization.InternalSerializationApi
-
-@file:OptIn(InternalSerializationApi::class)
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
