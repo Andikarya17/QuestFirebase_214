@@ -64,7 +64,7 @@ fun HostNavigasi(
             )
         ) {
             DetailSiswaScreen(
-                navigateToEditItem = {
+                navigateToEdit = {
                     navController.navigate("${DestinasiEdit.route}/$it")
                 },
                 navigateBack = {
