@@ -1,7 +1,10 @@
 package com.example.myfirebase.view
 
+import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
@@ -32,6 +35,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.text.font.FontWeight
 import com.example.myfirebase.modeldata.Siswa
 import kotlinx.coroutines.launch
 
@@ -181,6 +185,19 @@ fun DetailDataSiswa(
                 )
             )
         }
+    }
+}
+
+@Composable
+private fun BarisDetailData(
+    @StringRes labelResId: Int,
+    itemDetail: String,
+    modifier: Modifier = Modifier
+) {
+    Row(modifier = modifier) {
+        Text(stringResource(labelResId))
+        Spacer(modifier = Modifier.weight(1f))
+        Text(text = itemDetail, fontWeight = FontWeight.Bold)
     }
 }
 
