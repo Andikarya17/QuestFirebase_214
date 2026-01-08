@@ -23,6 +23,8 @@ import com.example.myfirebase.viewmodel.PenyediaViewModel
 import com.example.myfirebase.R
 import com.example.myfirebase.viewmodel.StatusUIDetail
 import androidx.compose.material3.Icon
+import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.Text
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.rememberCoroutineScope
@@ -109,6 +111,13 @@ private fun BodyDetailDataSiswa(
             )
 
             else -> {}
+        }
+        OutlinedButton(
+            onClick = { deleteConfirmationRequired = true },
+            shape = MaterialTheme.shapes.small,
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Text(stringResource(R.string.delete))
         }
 }
 
