@@ -22,7 +22,11 @@ import com.example.myfirebase.viewmodel.PenyediaViewModel
 import com.example.myfirebase.R
 import com.example.myfirebase.viewmodel.StatusUIDetail
 import androidx.compose.material3.Icon
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -93,6 +97,9 @@ private fun BodyDetailDataSiswa(
         verticalArrangement = Arrangement.spacedBy(
             dimensionResource(id = R.dimen.padding_medium)
         )
-    )
+    ) {
+        var deleteConfirmationRequired by rememberSaveable {
+            mutableStateOf(false)
+        }
 }
 
