@@ -10,6 +10,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.myfirebase.modeldata.DetailSiswa
 import com.example.myfirebase.modeldata.UIStateSiswa
 import com.example.myfirebase.modeldata.toDataSiswa
+import com.example.myfirebase.modeldata.toUiStateSiswa
 import com.example.myfirebase.repositori.RepositorySiswa
 import com.example.myfirebase.view.route.DestinasiDetail
 import kotlinx.coroutines.launch
@@ -27,7 +28,7 @@ class EditViewModel(
     init {
         viewModelScope.launch {
             uiStateSiswa = repositorySiswa.getSatuSiswa(idSiswa)!!
-                .toUiStateSiswa(true)
+                .toUiStateSiswa()
         }
 }
     fun updateUiState(detailSiswa: DetailSiswa) {

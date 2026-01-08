@@ -48,7 +48,9 @@ fun HomeScreen(
             FloatingActionButton(
                 onClick = navigateToItemEntry,
                 shape = MaterialTheme.shapes.medium,
-                modifier = Modifier.padding(dimensionResource(id = R.dimen.padding_large))
+                modifier = Modifier.padding(
+                    dimensionResource(id = R.dimen.padding_large)
+                )
             ) {
                 Icon(
                     imageVector = Icons.Default.Add,
@@ -58,51 +60,49 @@ fun HomeScreen(
         }
     ) { innerPadding ->
         HomeBody(
-            statusUiSiswa = viewModel.statusUiSiswa,
+            statusUISiswa = viewModel.statusUiSiswa,
             onSiswaClick = navigateToItemUpdate,
             retryAction = viewModel::loadSiswa,
-            modifier = Modifier.padding(innerPadding)
+            modifier = modifier
+                .padding(innerPadding)
+                .fillMaxSize()
         )
     }
 }
 
 @Composable
 fun HomeBody(
-    statusUiSiswa: StatusUiSiswa,
+    statusUISiswa: StatusUiSiswa,
     onSiswaClick: (Int) -> Unit,
     retryAction: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    when (statusUiSiswa) {
-        is StatusUiSiswa.Loading -> LoadingScreen(
-            modifier = modifier.fillMaxSize()
-        )
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = modifier
+    ) {
+        when (statusUISiswa) {
+            is StatusUiSiswa.Loading -> LoadingScreen()
 
-        is StatusUiSiswa.Success -> DaftarSiswa(
-            itemSiswa = statusUiSiswa.siswa,
-            onSiswaClick = { onSiswaClick(it.id.toInt()) },
-            modifier = modifier.fillMaxSize()
-        )
+            is StatusUiSiswa.Success -> DaftarSiswa(
+                itemSiswa = statusUISiswa.siswa,
+                onSiswaClick = { onSiswaClick(it.id.toInt()) }
+            )
 
-        is StatusUiSiswa.Error -> ErrorScreen(
-            retryAction = retryAction,
-            modifier = modifier.fillMaxSize()
-        )
+            is StatusUiSiswa.Error -> ErrorScreen(retryAction)
+        }
     }
 }
 
 @Composable
-fun LoadingScreen(modifier: Modifier = Modifier) {
-    Box(
-        modifier = modifier,
-        contentAlignment = Alignment.Center
-    ) {
-        Image(
-            painter = painterResource(R.drawable.loading_img),
-            contentDescription = stringResource(R.string.loading),
-            modifier = Modifier.size(200.dp)
-        )
-    }
+fun LoadingScreen(
+    modifier: Modifier = Modifier
+) {
+    Image(
+        painter = painterResource(R.drawable.loading_img),
+        contentDescription = stringResource(R.string.loading),
+        modifier = modifier.size(200.dp)
+    )
 }
 
 @Composable
@@ -131,10 +131,11 @@ fun DaftarSiswa(
     onSiswaClick: (Siswa) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    LazyColumn(
-        modifier = modifier
-    ) {
-        items(items = itemSiswa, key = { it.id }) { person ->
+    LazyColumn(modifier = modifier) {
+        items(
+            items = itemSiswa,
+            key = { it.id }
+        ) { person ->
             ItemSiswa(
                 siswa = person,
                 modifier = Modifier
@@ -155,7 +156,9 @@ fun ItemSiswa(
         elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
     ) {
         Column(
-            modifier = Modifier.padding(dimensionResource(id = R.dimen.padding_large)),
+            modifier = Modifier.padding(
+                dimensionResource(id = R.dimen.padding_large)
+            ),
             verticalArrangement = Arrangement.spacedBy(
                 dimensionResource(id = R.dimen.padding_small)
             )
@@ -165,7 +168,7 @@ fun ItemSiswa(
                     text = siswa.nama,
                     style = MaterialTheme.typography.titleLarge
                 )
-                Spacer(modifier = Modifier.weight(1f))
+                Spacer(Modifier.weight(1f))
                 Icon(
                     imageVector = Icons.Default.Phone,
                     contentDescription = null
@@ -182,3 +185,4 @@ fun ItemSiswa(
         }
     }
 }
+

@@ -62,8 +62,11 @@ fun DetailSiswaScreen(
             FloatingActionButton(
                 onClick = {
                     when (uiState) {
-                        is StatusUIDetail.Success ->
-                            navigateToEdit(uiState.satusiswa.id.toInt())
+                        is StatusUIDetail.Success -> {
+                            uiState.satusiswa?.let {
+                                navigateToEdit(it.id)
+                            }
+                        }
                         else -> {}
                     }
                 },
